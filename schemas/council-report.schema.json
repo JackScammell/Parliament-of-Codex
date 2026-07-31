@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Council Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["mode", "inventory", "participants", "summary", "decision"],
+  "properties": {
+    "mode": {
+      "enum": ["answer", "plan", "implement", "review"]
+    },
+    "inventory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "summary", "reuse_decision"],
+        "properties": {
+          "path": { "type": "string" },
+          "summary": { "type": "string" },
+          "reuse_decision": { "enum": ["extend", "replace", "none"] }
+        }
+      }
+    },
+    "participants": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "summary": { "type": "string" },
+    "validation": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "decision": {
+      "enum": ["APPROVE", "CHANGES REQUESTED", "INCOMPLETE"]
+    },
+    "trade_offs": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+.parliament/
+.project-files/.telemetry/
+__pycache__/
+.DS_Store

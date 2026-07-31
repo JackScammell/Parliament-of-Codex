@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Council Review Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["review_range", "reviewers", "findings", "verdict"],
+  "properties": {
+    "review_range": { "type": "string" },
+    "reviewers": {
+      "type": "array",
+      "minItems": 2,
+      "items": { "type": "string" }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["severity", "evidence", "impact", "recommendation"],
+        "properties": {
+          "severity": { "enum": ["critical", "high", "medium", "low"] },
+          "evidence": { "type": "string" },
+          "impact": { "type": "string" },
+          "recommendation": { "type": "string" }
+        }
+      }
+    },
+    "verdict": {
+      "enum": ["APPROVE", "CHANGES REQUESTED", "INCOMPLETE"]
+    }
+  }
+}
