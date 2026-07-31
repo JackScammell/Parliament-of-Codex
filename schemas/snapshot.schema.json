@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Parliament Snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "snapshot_id", "created_at", "cwd", "git", "summary", "metadata"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "snapshot_id": { "type": "string" },
+    "label": { "type": "string" },
+    "created_at": { "type": "string" },
+    "cwd": { "type": "string" },
+    "git": { "type": "object" },
+    "summary": { "type": "string" },
+    "metadata": { "type": "object" }
+  }
+}

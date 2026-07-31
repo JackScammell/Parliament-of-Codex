@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Parliament Telemetry Event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["timestamp", "event", "metadata"],
+  "properties": {
+    "timestamp": { "type": "string" },
+    "event": { "type": "string" },
+    "agent": { "type": ["string", "null"] },
+    "outcome": { "type": ["string", "null"] },
+    "duration_ms": { "type": ["integer", "null"] },
+    "tokens": { "type": ["integer", "null"] },
+    "metadata": { "type": "object" }
+  }
+}

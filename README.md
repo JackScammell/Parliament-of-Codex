@@ -30,13 +30,16 @@ configuration. Once installed, start a new Codex thread before testing a skill.
 Keep project-specific decisions and plans in `.project-files/`.
 
 See `docs/GETTING_STARTED.md` for example prompts and `docs/VALIDATION.md` for
-local repository checks.
+local repository checks. See `docs/FEATURE_PARITY.md` for the full Claude to
+Codex feature map and `docs/STATE_TOOLING.md` for portable local state.
 
 ## Repository layout
 
 - `.codex/agents/` contains the Codex-native council roles.
 - `skills/` contains reusable workflows distributed by the plugin.
 - `templates/` and `schemas/` standardise project and council artifacts.
+- `scripts/parliament_state.py` manages snapshots, telemetry, metrics, and
+  project status in a Gitignored local state directory.
 - `AGENTS.md` defines governance that applies to every task.
 - `docs/PORTING_PLAN.md` records the staged migration and compatibility map.
 

@@ -15,45 +15,29 @@ Claude Code repository.
 | Slash-command workflows | Skills invoked with `$name` | Six core workflows created |
 | Read-only grumpy reviewers | Read-only custom reviewer agents | Initial domain reviewer fleet created |
 | `.project-files/` plans and specs | Same project-owned artifact location | Preserved |
-| `${CLAUDE_PLUGIN_DATA}` telemetry | Gitignored `.parliament/` state | Defined; not implemented |
-| Claude lifecycle hooks | Codex hook equivalents after event-by-event audit | Deferred |
-| Python deliberation library | Optional Codex CLI/MCP sidecar or OpenAI API adapter | Deferred |
+| `${CLAUDE_PLUGIN_DATA}` telemetry | Gitignored `.parliament/` state | Implemented as portable local state tooling |
+| Claude lifecycle hooks | Codex hook equivalents after event-by-event audit | Ported as explicit lifecycle workflows |
+| Python deliberation library | Optional Codex CLI/MCP sidecar or OpenAI API adapter | Native Codex debate is the default; integration remains optional |
 
 ## Delivery phases
 
-### Phase 1: Foundation
+## Completed port
 
-- Validate the plugin, root guidance, initial agent set, and core skills.
-- Test an end-to-end plan and a governed code review in a sample repository.
-- Define a stable JSON schema for council reports and review evidence.
+- 33 Codex-native council roles cover orchestration, planning, specialist
+  analysis, and read-only review.
+- Fifteen skills cover every active Claude command through focused actions.
+- Project artifacts, ADRs, onboarding, engineering, quality, release,
+  operations, discovery, lifecycle, and plugin workflows are available.
+- Portable local snapshots, telemetry, metrics, and project status replace the
+  Claude-specific plugin-data dependency.
 
-### Phase 2: Council parity
+## Optional future extensions
 
-- Port the remaining planning, specialist, and reviewer roles.
-- Add planning, scoping, implementation, onboarding, debate, and ADR skills.
-- Add reviewer selection rules for privacy, accessibility, performance, tests,
-  docs, and cost.
-
-### Phase 3: State and operations
-
-- Implement snapshots, replayable council reports, JSONL telemetry, metrics,
-  cost estimates, and project status.
-- Map only semantically compatible Codex hook events; do not copy Claude event
-  names or plugin-data assumptions.
-
-### Phase 4: Secondary workflows
-
-- Port developer workflow, quality, release, discovery, and operations skills
-  according to usage value.
-- Add optional integrations through MCP only when a workflow needs controlled
-  external state or actions.
-
-### Phase 5: Deliberation engine decision
-
-- Compare native Codex council output with the Python library's structured
-  voting, convergence, and analytics features.
-- Implement an OpenAI-backed adapter or local MCP/CLI sidecar only if it adds
-  measurable value. The current Python model caller is not usable as-is.
+- Connect external services through purpose-built MCP servers.
+- Configure Codex automations or hooks where the local environment supports
+  them.
+- Add an API-backed Python deliberation sidecar only if native Codex debate
+  proves insufficient in measured use.
 
 ## Acceptance criteria
 

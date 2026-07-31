@@ -7,6 +7,7 @@ Run these checks from the repository root:
 ```bash
 node -e 'JSON.parse(require("fs").readFileSync(".codex-plugin/plugin.json", "utf8"))'
 git diff --check
+python3 -m unittest discover -s tests -v
 ```
 
 The plugin creator's full validator additionally requires `PyYAML` in the
