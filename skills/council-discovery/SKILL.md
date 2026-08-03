@@ -5,13 +5,4 @@ description: Explain available Parliament skills, agents, configuration, changel
 
 # Council Discovery
 
-Choose one action: `list-agents`, `explain-agent`, `list-commands`, `version`,
-`readme`, or `changelog`.
-
-Read the local files as the source of truth:
-
-- `list-agents` and `explain-agent`: inspect `.codex/agents/` and
-  `docs/AGENT_SELECTION.md`.
-- `list-commands`: inspect `docs/FEATURE_PARITY.md` and `skills/`.
-- `version`: inspect `.codex-plugin/plugin.json`.
-- `readme` and `changelog`: display the requested document without fabrication.
+Actions: `list-agents` lists `.codex/agents/` with availability caveats; `explain-agent` explains one verified role; `list-commands` reads `docs/FEATURE_PARITY.md` and explicit skill actions; `version` reads the manifest; `readme` reads `README.md`; `changelog` reads `CHANGELOG.md`. Read local files as source of truth. Do not fabricate installed state or capabilities.

@@ -1,51 +1,37 @@
 # Parliament of Codex
 
-A Codex-native successor to Parliament of Chaos. It retains a 33-role council
-of governed specialist and review workflows without modifying the Claude Code
-project it was inspired by.
+Parliament of Codex 0.3.0 provides 15 qualified skills and 33 project-scoped
+agent definitions for inventory-first planning, implementation, review, and
+operations. All tracked-file workflows are governed by independent correctness
+and security review.
 
-## Current scope
+## Start here
 
-The first release provides reusable council skills, governed review, and
-project-scoped Codex agents. It intentionally prioritises planning, scoping,
-implementation coordination, and review before porting the long tail of
-workflow commands.
+- [Installation](docs/INSTALLATION.md) — marketplace installation, upgrade, removal, and source development
+- [0.2 → 0.3 migration](docs/MIGRATION_0_3.md) — backup, mapping, collision/orphan handling, validation, and rollback
+- [Getting started](docs/GETTING_STARTED.md) — qualified prompts for common workflows
+- [Artifact contract](docs/ARTIFACT_CONTRACT.md) — the canonical `.project-files/` and `.parliament/` graph
+- [Configuration](docs/CONFIGURATION.md) and [agent selection](docs/AGENT_SELECTION.md)
+- [Trust boundaries](docs/TRUST_BOUNDARIES.md)
+- [Feature parity](docs/FEATURE_PARITY.md), [state tooling](docs/STATE_TOOLING.md), and [validation](docs/VALIDATION.md)
+- [Porting status](docs/PORTING_PLAN.md) and [changelog](CHANGELOG.md)
 
-## Develop it locally
+Installed skills are namespace-qualified:
 
-1. Open this repository in Codex.
-2. The local `AGENTS.md` and `.codex/agents/` files apply while developing this
-   project.
-3. Before the plugin is registered in a local marketplace, ask Codex to read a
-   workflow file directly, for example `skills/council-plan/SKILL.md`.
-
-## Install for reuse
-
-Bundled skills become `$council-plan`, `$council-scope`, `$council-implement`,
-`$council-core`, `$council-review`, and `$council-debate` after the plugin is
-registered and installed from a local marketplace. Marketplace registration is
-kept as an explicit, separate step because it writes to your user-level Codex
-configuration. Once installed, start a new Codex thread before testing a skill.
-
-Keep project-specific decisions and plans in `.project-files/`.
-
-See `docs/GETTING_STARTED.md` for example prompts and `docs/VALIDATION.md` for
-local repository checks. See `docs/FEATURE_PARITY.md` for the full Claude to
-Codex feature map and `docs/STATE_TOOLING.md` for portable local state.
+`$parliament-of-codex:council-core`, `council-plan`, `council-scope`,
+`council-implement`, `council-review`, `council-debate`, `council-decisions`,
+`council-engineering`, `council-quality`, `council-release`,
+`council-operations`, `council-lifecycle`, `council-onboard`,
+`council-discovery`, and `council-plugins` (each with the same prefix).
 
 ## Repository layout
 
-- `.codex/agents/` contains the Codex-native council roles.
-- `skills/` contains reusable workflows distributed by the plugin.
-- `templates/` and `schemas/` standardise project and council artifacts.
-- `scripts/parliament_state.py` manages snapshots, telemetry, metrics, and
-  project status in a Gitignored local state directory.
-- `AGENTS.md` defines governance that applies to every task.
-- `docs/PORTING_PLAN.md` records the staged migration and compatibility map.
+- `skills/`: distributed workflows and all 66 explicit legacy action aliases
+- `.codex/agents/`: 33 project-scoped role definitions; installation does not guarantee their availability in another project
+- `templates/` and `schemas/`: human and machine artifact contracts
+- `scripts/parliament_state.py`: Python 3.9+ local snapshots, telemetry, metrics, and project status
+- `scripts/validate_repository.py` and `tests/`: dependency-free validation
 
-## Principles
-
-- Inventory existing code before proposing new abstractions.
-- Use parallel agents for independent, read-heavy work.
-- Keep reviewers read-only and require security and correctness review floors.
-- Keep user-facing artifacts in the project and transient state in `.parliament/`.
+Durable artifacts belong in `.project-files/`. Local telemetry, snapshots, and
+disposable evidence belong in ignored/untracked `.parliament/`. Never store
+secrets in either location.

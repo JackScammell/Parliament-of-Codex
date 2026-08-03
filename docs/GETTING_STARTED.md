@@ -1,52 +1,37 @@
 # Getting Started
 
-## Before installation
+Follow [installation](INSTALLATION.md), verify `codex plugin list`, and start a
+new thread. Plugin installation bundles skills; verify required project-scoped
+agents separately as described in [configuration](CONFIGURATION.md).
 
-While developing this repository, ask Codex to read a skill file directly. For
-example: `Read skills/council-plan/SKILL.md and follow it for this task.`
-
-After this plugin is registered and installed in a local Codex marketplace, use
-the `$council-*` names below in a new Codex thread.
-
-## Planning a project
-
-Open a target project in Codex and use:
+## Plan, scope, implement, review
 
 ```text
-Use $council-plan to plan a customer portal. Inventory the existing repository,
-define an MVP, list non-goals and risks, then write the project artifacts under
-.project-files/. Do not edit application code.
+Use $parliament-of-codex:council-plan with action plan-project to plan a customer
+portal. Inventory reuse, define MVP/non-goals/risks, and write the canonical
+.project-files/plan artifacts without editing application code.
 ```
 
-Review and approve the generated project outline and roadmap before scoping an
-item.
-
-## Scoping a roadmap item
+After recorded approval:
 
 ```text
-Use $council-scope for the `user-authentication` roadmap item. Reuse existing
-patterns, create a detailed specification and independently verifiable task
-list, then identify the first task to implement.
+Use $parliament-of-codex:council-scope with action roadmap-item-scope for
+user-authentication. Create .project-files/work-items/user-authentication/spec.md,
+tasks.md, and lifecycle state with verifiable acceptance criteria.
 ```
-
-## Implementing safely
 
 ```text
-Use $council-implement for Task 1 of `user-authentication`. Make only the
-approved changes, run focused validation, and require correctness and security
-review before marking the task complete.
+Use $parliament-of-codex:council-implement with action implement-task-list for
+the approved user-authentication work item. Use one editor, validate, and wait
+for correctness-reviewer and security-reviewer before completion.
 ```
-
-## Reviewing a working tree
 
 ```text
-Use $council-review to review the current working tree against HEAD. Wait for
-correctness and security reviewers, add testing review if relevant, and return
-only actionable findings with an explicit verdict.
+Use $parliament-of-codex:council-review with action parliament-review to review
+HEAD against its base. Persist exact range, findings, validation, and mandatory
+reviewer status; be harsh and return one verdict.
 ```
 
-## State ownership
-
-Commit `.project-files/` when its plans, specifications, and ADRs should be
-shared with the project. Do not commit `.parliament/`; it is local runtime
-evidence and telemetry.
+See [feature parity](FEATURE_PARITY.md) for every action. Commit durable
+`.project-files/` artifacts when the project should share them. Keep
+`.parliament/` ignored/untracked and free of secrets.

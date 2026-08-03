@@ -1,4 +1,8 @@
-# Specification: <Roadmap Item>
+# Specification: <Work Item>
+
+- Status: draft
+- Revision: 1
+- Approval: pending (record in adjacent `project-state.json`)
 
 ## Objective
 
@@ -10,7 +14,7 @@
 
 ## Design and interfaces
 
-## Security and privacy considerations
+## Trust boundaries, security, and privacy
 
 ## Validation strategy
 

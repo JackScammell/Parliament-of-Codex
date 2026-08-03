@@ -5,17 +5,6 @@ description: Run a bounded, structured Codex debate to make a technical decision
 
 # Council Debate
 
-Use this skill for architectural or technical decisions with genuine trade-offs.
+Actions: `debate-topic` runs a decision debate; `debate-analytics` summarizes recorded participant positions, evidence coverage, agreement/disagreement, dissent, and revisit signals across selected debate records without inventing quantitative confidence.
 
-1. Define the decision question, constraints, decision owner, and deadline.
-2. Ask `repo-explorer` for evidence from the existing project when relevant.
-3. Ask `deliberation-conductor` to select two to five relevant advisers from
-   `docs/AGENT_SELECTION.md` and collect independent positions in parallel.
-4. Run one challenge round only for material disagreements. Participants must
-   critique evidence and assumptions, not personalities or preferences.
-5. Record the decision in `.project-files/decisions/` using the council report
-   template. Include alternatives rejected, dissent, validation signals, and
-   a revisit trigger.
-
-Use `INCOMPLETE` when evidence is insufficient or a required security or
-correctness perspective is unavailable. Do not edit product code.
+Define question, constraints, owner, and UTC deadline. Ask `repo-explorer` for project evidence and `deliberation-conductor` for two to five relevant independent positions. Run one evidence-focused challenge round. One editor writes `.project-files/decisions/debates/<slug>.md` (and optional same-basename JSON) using `templates/debate-record.md` and `schemas/debate-record.schema.json`, including participants, positions, evidence, decision, alternatives, dissent, validation, revisit trigger, and replay link. Validate it and require independent `correctness-reviewer` and `security-reviewer` review before recording completion. Do not edit product code; insufficient required evidence yields `INCOMPLETE`.

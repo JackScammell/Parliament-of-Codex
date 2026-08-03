@@ -1,8 +1,10 @@
 # Council Report: <Task or Topic>
 
-## Mode
+This Markdown is the human-readable companion to `schemas/council-report.schema.json`; a workflow may produce both with the same basename.
 
-`answer` | `plan` | `implement` | `review`
+## Mode and exact review range
+
+Base, head, and included paths:
 
 ## Inventory and reuse decision
 
@@ -10,9 +12,14 @@
 
 ## Summary
 
-## Evidence and validation
+## Validation evidence
 
-## Reviewer verdicts
+## Review report
+
+Link the matching review report under `.project-files/reports/reviews/` and identify correctness/security status.
+
+Record both mandatory reviewer role/status/verdict/evidence entries and the
+number of unresolved blocking findings directly in the machine companion too.
 
 ## Decision
 

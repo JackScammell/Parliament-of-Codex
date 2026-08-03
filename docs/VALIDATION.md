@@ -1,30 +1,28 @@
 # Validation
 
-## Structural checks
-
-Run these checks from the repository root:
-
-```bash
-node -e 'JSON.parse(require("fs").readFileSync(".codex-plugin/plugin.json", "utf8"))'
-git diff --check
-python3 -m unittest discover -s tests -v
-```
-
-The plugin creator's full validator additionally requires `PyYAML` in the
-active Python environment:
+Run from any directory (the script resolves its own repository by default, or
+accepts `--root` for an isolated source copy):
 
 ```bash
-python3 /Users/jack/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py .
+python3 /path/to/Parliament-of-Codex/scripts/validate_repository.py
+python3 -m unittest discover -s /path/to/Parliament-of-Codex/tests -v
+git -C /path/to/Parliament-of-Codex diff --check
 ```
 
-## Workflow smoke tests
+The dependency-free validator strictly parses the frontmatter and supported
+TOML subset on Python 3.9+. It verifies 15 skills, 33 named agents, read-only
+reviewers/orchestrator, manifest/version/prompts, qualified calls, 66 unique
+structurally declared legacy action contracts, all-agent trust/stale-path rules,
+canonical paths, internal Markdown links, and schema/template consumers. It
+parses every JSON schema and checks the enforced contract keywords, but does not
+claim full JSON Schema meta-validation without an external schema engine.
 
-Use a disposable sample repository to confirm each workflow:
+When `.project-files/` is present, it validates actual project-state lifecycle,
+revision and canonical digest; actual council/review floor semantics; and actual
+same-basename fast-track debt JSON/Markdown. With no artifact JSON, output says
+so explicitly; adversarial contract fixtures exercise those branches in tests.
 
-1. `$council-plan` produces the three project artifacts without product edits.
-2. `$council-scope` creates a specification and task list for one item.
-3. `$council-implement` collects correctness and security reports before a
-   completion claim.
-4. `$council-review` returns `APPROVE`, `CHANGES REQUESTED`, or `INCOMPLETE`.
-
-Record unexpected behavior in the porting plan before adding more workflows.
+Optional upstream validators may require PyYAML; their missing optional
+dependency is not a repository failure when the repository-owned validator and
+tests pass. Run skill quick validation and plugin validation when their
+dependencies are available, then inspect `git status --short`.

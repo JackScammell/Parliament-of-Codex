@@ -1,8 +1,12 @@
 # Tasks: <Roadmap Item>
 
+- Status: draft
+- Revision: 1
+- Approval: pending (record in adjacent `project-state.json`)
+
 ## Task 1: <Name>
 
-- Status: Not started
+- Status: unstarted
 - Owner role: implementation-owner
 - Dependencies:
 - Expected files or symbols:
@@ -11,7 +15,7 @@
 
 ## Task 2: <Name>
 
-- Status: Not started
+- Status: unstarted
 - Owner role: implementation-owner
 - Dependencies:
 - Expected files or symbols:

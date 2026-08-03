@@ -3,14 +3,22 @@
   "title": "Parliament Telemetry Event",
   "type": "object",
   "additionalProperties": false,
-  "required": ["timestamp", "event", "metadata"],
+  "required": ["schema_version", "timestamp", "event", "agent", "outcome", "duration_ms", "tokens", "cost", "metadata"],
   "properties": {
-    "timestamp": { "type": "string" },
-    "event": { "type": "string" },
-    "agent": { "type": ["string", "null"] },
-    "outcome": { "type": ["string", "null"] },
-    "duration_ms": { "type": ["integer", "null"] },
-    "tokens": { "type": ["integer", "null"] },
+    "schema_version": { "const": 1 },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "event": { "type": "string", "minLength": 1, "maxLength": 4096, "pattern": ".*\\S.*" },
+    "agent": { "type": ["string", "null"], "maxLength": 4096 },
+    "outcome": { "type": ["string", "null"], "maxLength": 4096 },
+    "duration_ms": { "type": ["integer", "null"], "minimum": 0 },
+    "tokens": { "type": ["integer", "null"], "minimum": 0 },
+    "cost": {
+      "oneOf": [{ "type": "null" }, { "type": "object", "additionalProperties": false,
+        "required": ["amount", "currency", "source"], "properties": {
+          "amount": { "type": "number", "minimum": 0, "maximum": 1e308 }, "currency": { "type": "string", "pattern": "^[A-Z]{3}$" }, "source": { "type": "string", "minLength": 1, "maxLength": 4096, "pattern": ".*\\S.*" }
+        }
+      }]
+    },
     "metadata": { "type": "object" }
   }
 }

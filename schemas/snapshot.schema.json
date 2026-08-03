@@ -3,15 +3,22 @@
   "title": "Parliament Snapshot",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "snapshot_id", "created_at", "cwd", "git", "summary", "metadata"],
+  "required": ["schema_version", "snapshot_id", "label", "created_at", "cwd", "git", "summary", "metadata"],
   "properties": {
     "schema_version": { "const": 1 },
-    "snapshot_id": { "type": "string" },
-    "label": { "type": "string" },
-    "created_at": { "type": "string" },
-    "cwd": { "type": "string" },
-    "git": { "type": "object" },
-    "summary": { "type": "string" },
+    "snapshot_id": { "type": "string", "pattern": "^(?:[0-9]{8}T[0-9]{6}\\.[0-9]{6}Z-[0-9a-f]{12}|[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}-[0-9]{2}-[0-9]{2}Z)$" },
+    "label": { "type": "string", "maxLength": 4096 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "cwd": { "type": "string", "maxLength": 4096 },
+    "git": {
+      "type": "object", "additionalProperties": false,
+      "required": ["head", "branch", "dirty"],
+      "properties": {
+        "head": { "type": ["string", "null"] }, "branch": { "type": ["string", "null"] },
+        "dirty": { "type": ["boolean", "null"] }
+      }
+    },
+    "summary": { "type": "string", "maxLength": 4096 },
     "metadata": { "type": "object" }
   }
 }

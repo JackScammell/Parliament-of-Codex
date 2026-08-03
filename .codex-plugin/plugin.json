@@ -1,18 +1,23 @@
 {
   "name": "parliament-of-codex",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A governed council of Codex specialists for planning, implementation, and review.",
   "author": {
-    "name": "Local developer"
+    "name": "Jack Scammell"
   },
+  "repository": "https://github.com/JackScammell/Parliament-of-Codex",
   "skills": "./skills/",
   "interface": {
     "displayName": "Parliament Of Codex",
     "shortDescription": "Governed multi-agent workflows for Codex.",
     "longDescription": "Parliament of Codex coordinates focused specialists and read-only reviewers to plan, build, and scrutinise software changes.",
-    "developerName": "Local developer",
+    "developerName": "Jack Scammell",
     "category": "Productivity",
-    "capabilities": [],
-    "defaultPrompt": "Use the Parliament council to plan, implement, or review this task."
+    "capabilities": ["Read", "Write"],
+    "defaultPrompt": [
+      "Use $parliament-of-codex:council-plan to create a governed project plan.",
+      "Use $parliament-of-codex:council-implement to implement an approved scoped task.",
+      "Use $parliament-of-codex:council-review to review this change harshly."
+    ]
   }
 }

@@ -1,5 +1,9 @@
 # Project Outline: <Project Name>
 
+- Status: draft
+- Revision: 1
+- Approval: pending (record in `.project-files/plan/project-state.json`)
+
 ## Problem
 
 ## Users and outcomes

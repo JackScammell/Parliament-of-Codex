@@ -5,17 +5,11 @@ description: Create, supersede, and re-evaluate durable architectural decisions 
 
 # Council Decisions
 
-Choose one action: `adr-new`, `adr-supersede`, or `decision-review`.
+Use `templates/architectural-decision.md` under `.project-files/decisions/adrs/`.
 
-- `adr-new`: create `.project-files/adrs/NNNN-<slug>.md` with status, context,
-  decision, alternatives, consequences, validation signals, and revisit
-  triggers. Allocate the next unused four-digit number and update `INDEX.md`.
-- `adr-supersede`: preserve the old ADR, change its status to
-  `superseded-by-NNNN`, add a dated forward link and rationale, then update
-  both the replacement ADR and index.
-- `decision-review`: load an ADR, council report, or prior debate; identify its
-  assumptions; test them against current evidence; use `$council-debate` for
-  material trade-offs; return `HOLD`, `AMEND`, or `SUPERSEDE`. Append the review
-  result without rewriting historical rationale.
+- `adr-new`: allocate `NNNN-<slug>.md`, capture status/revision, context, constraints, owner and approval evidence, decision, alternatives, dissent, consequences, security/privacy, validation, and revisit triggers; update `index.md`.
+- `adr-supersede`: preserve history, set old status `superseded`, add dated bidirectional links and rationale, and update `index.md`.
+- `decision-review`: test assumptions against current evidence; invoke `$parliament-of-codex:council-debate` for material trade-offs and append `HOLD`, `AMEND`, or `SUPERSEDE` without rewriting history.
 
-All decision artifacts stay in `.project-files/` and must surface dissent.
+Only `proposed`, `accepted`, `deprecated`, and `superseded` are valid statuses. Content changes increment revision and invalidate stale approval digests.
+One editor owns ADR/index mutations. Validate links and lifecycle fields, then require independent `correctness-reviewer` and `security-reviewer` review before completion.

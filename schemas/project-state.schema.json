@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "project-state.schema.json",
+  "title": "Project Artifact State",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact", "status", "revision", "approval"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "artifact": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["draft", "in-review", "approved", "invalidated", "superseded"] },
+    "revision": { "type": "integer", "minimum": 1 },
+    "approval": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["approver", "approved_at", "revision", "sha256"],
+          "properties": {
+            "approver": { "type": "string", "minLength": 1 },
+            "approved_at": { "type": "string", "format": "date-time" },
+            "revision": { "type": "integer", "minimum": 1 },
+            "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+          }
+        }
+      ]
+    },
+    "invalidated_at": { "type": "string", "format": "date-time" },
+    "invalidation_reason": { "type": "string", "minLength": 1 }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "approved" } }, "required": ["status"] },
+      "then": { "properties": { "approval": { "type": "object" } }, "required": ["approval"] }
+    },
+    {
+      "if": { "properties": { "status": { "const": "invalidated" } }, "required": ["status"] },
+      "then": { "required": ["invalidated_at", "invalidation_reason"] }
+    },
+    {
+      "if": { "properties": { "status": { "enum": ["draft", "in-review"] } }, "required": ["status"] },
+      "then": { "properties": { "approval": { "type": "null" } } }
+    }
+  ]
+}
